@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echosni
+  labels:
+    app: echosni
+spec:
+  selector:
+    matchLabels:
+      app: echosni
+  template:
+    metadata:
+      labels:
+        app: echosni
+    spec:
+      containers:
+      - name: echosni
+        image: easeway/echosni:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: echosni
+spec:
+  selector:
+    app: echosni
+  ports:
+  - name: tls
+    port: 8443
